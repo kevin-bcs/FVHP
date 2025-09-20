@@ -12,25 +12,20 @@ const mensajes = [
   "Ik hou van jou", "Jag älskar dig", "Σ’ αγαπώ", "Aku cinta kamu", "Mahal kita",
   "Ngiyakuthanda", "Kocham cię", "Te iubesc", "T’estimo", "Seni seviyorum",
   "Nakupenda", "אני אוהב אותך", "Mon amour", "Minha vida", "Lubim ťa",
-  "Obicham te", "Lubim ta", "Ljubit te", "Eg elska teg", "Jeg elsker deg",
+  "Obicham te", "Ljubit te", "Eg elska teg", "Jeg elsker deg",
   "Amo-te", "Volim te", "Szeretlek", "Tôi yêu bạn", "Chan rak khun", "Wo ai ni",
   "Ngo oi ney", "Kuv hlub koj", "Ndagukunda", "Ndiyakuthanda", "Anata o aishiteimasu",
-  "Wa ai nei", "Querida, te amo", "Tu me plais", "Ti amo tanto", "Te sakam",
+  "Wa ai nei", "Ti amo tanto", "Te sakam",
   "Ya tebya obozhayu", "Kimi o ai shiteru", "S’agapo", "Ich mag dich sehr",
-  "Mi amas vin", "T’estimo molt", "Amor mío", "Mi cielo", "Mon coeur",
-  "Te adoro", "My love", "You are my everything", "Eg elska teg", "Jag älskar dig",
-  "Jeg elsker dig", "Je t’aime", "Eu te amo", "Ti amo", "Te quiero", "Nakupenda",
-  "Saya cinta padamu", "Ana behibek", "Kocham cię", "Jeg elsker deg", "Mi vida",
-  "Te iubesc", "Seni seviyorum", "Ngiyakuthanda", "Mahal kita", "Tôi yêu bạn",
-  "Mon amour", "Mo nifẹ rẹ", "Ek het jou lief", "Jeg elsker deg", "Ya tebya lyublyu",
-  "Ich liebe dich", "Mi corazon", "Lubim ta", "Te quiero", "Wo ai ni", "Ti amo",
-  "Eu te amo", "Je t’aime", "Te amo", "Σ’ αγαπώ", "T’estimo", "Ich liebe dich"
+  "Mi amas vin", "T’estimo molt", "Eg elska teg", "Jag älskar dig",
+  "Saya cinta padamu", "Ana behibek", "Mo nifẹ rẹ", "Ek het jou lief",
+  "Ya tebya lyublyu", "Mi corazon", "Lubim ta", "Σ’ αγαπώ", "T’estimo"
 ];
 
-// Reproducir música solo al hacer clic en el corazón (iPhone compatible)
+// Función para reproducir música
 function playMusic() {
   if (!isPlaying) {
-    song.currentTime = 30;
+    song.currentTime = 30; // empieza desde 30s
     song.play().then(() => {
       isPlaying = true;
       musicBtn.textContent = "🔊";
@@ -39,6 +34,13 @@ function playMusic() {
     });
   }
 }
+
+// 🎶 Iniciar música al hacer clic en cualquier parte de la página
+document.body.addEventListener("click", function initMusic() {
+  playMusic();
+  // 🔥 Quitar el listener después de la primera interacción
+  document.body.removeEventListener("click", initMusic);
+});
 
 // Botón pequeño → pausar/reanudar
 musicBtn.addEventListener("click", () => {
@@ -73,9 +75,8 @@ function explosion(cx, cy) {
   }
 }
 
-// Clic en el corazón
+// Clic en el corazón → solo explosión + animación
 heartBtn.addEventListener("click", () => {
-  playMusic();
   const rect = heartBtn.getBoundingClientRect();
   const cx = rect.left + rect.width / 2;
   const cy = rect.top + rect.height / 2;
