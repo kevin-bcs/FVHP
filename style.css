@@ -1,0 +1,229 @@
+/* ==========================
+   VARIABLES DE DISEÑO
+========================== */
+:root {
+  --heart-size: clamp(130px, 28vw, 150px);
+
+  --grad1: #ff6f91;
+  --grad2: #ff9671;
+  --grad3: #ffc75f;
+  --grad4: #f9f871;
+  --grad5: #a18cd1;
+  --grad6: #fbc2eb;
+
+  --text-main: #fff;
+  --shadow-strong: 0 0 25px rgba(255, 0, 90, 0.6);
+  --shadow-soft: 0 0 15px rgba(255, 150, 200, 0.4);
+}
+
+/* ==========================
+   RESETEO
+========================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  font-family: "Quicksand", sans-serif;
+  color: var(--text-main);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* ==========================
+   FONDO
+========================== */
+.background {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(-45deg, #1b0034, #370055, #5b006e, #8b1874);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  z-index: -3;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* textura ligera tipo estrellas */
+.texture {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 4px 4px;
+  opacity: 0.15;
+  z-index: -2;
+}
+
+/* ==========================
+   TÍTULO
+========================== */
+.title {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(34px, 6vw, 60px);
+  text-align: center;
+  background: linear-gradient(90deg, var(--grad1), var(--grad2), var(--grad3), var(--grad4));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: var(--shadow-soft);
+  margin-bottom: 20px;
+}
+
+/* ==========================
+   CORAZÓN
+========================== */
+.heart-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: var(--heart-size);
+  height: var(--heart-size);
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  position: relative;
+}
+.heart-button img {
+  width: 100%;
+  height: auto;
+  animation: heartbeat 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 12px 25px rgba(255, 50, 100, 0.7));
+  transition: transform 0.2s ease;
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.12); }
+  40% { transform: scale(0.95); }
+  60% { transform: scale(1.08); }
+}
+.heart-button.clicked img {
+  animation: pulse 0.6s ease-out;
+}
+@keyframes pulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 12px #ff3b6e); }
+  50% { transform: scale(1.25); filter: drop-shadow(0 0 35px #ff6f91); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 12px #ff3b6e); }
+}
+
+/* ==========================
+   BOTÓN DE MÚSICA
+========================== */
+.music-control {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 100;
+}
+.music-btn {
+  background: rgba(0,0,0,0.4);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: background 0.3s;
+}
+.music-btn:hover {
+  background: rgba(0,0,0,0.65);
+}
+
+/* ==========================
+   FRASES "TE QUIERO"
+========================== */
+.chip {
+  position: absolute;
+  font-family: "Great Vibes", cursive;
+  font-size: 28px;
+  font-weight: bold;
+  background: linear-gradient(90deg, var(--grad5), var(--grad6), var(--grad1));
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 2s ease-in-out infinite alternate, gradientMove 6s linear infinite;
+  white-space: nowrap;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 8px rgba(255, 150, 200, 0.6); }
+  to   { text-shadow: 0 0 22px rgba(255, 230, 240, 1); }
+}
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ==========================
+   LLUVIA DE FRASES
+========================== */
+.rain-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+.chip.rain {
+  animation: fall linear forwards, sway ease-in-out infinite;
+  opacity: 0.95;
+}
+@keyframes fall {
+  to { transform: translateY(110vh); opacity: 0; }
+}
+@keyframes sway {
+  0% { transform: translateX(-25px); }
+  50% { transform: translateX(25px); }
+  100% { transform: translateX(-25px); }
+}
+
+/* ==========================
+   SECCIÓN TEXTO
+========================== */
+.about {
+  max-width: 650px;
+  margin: 80px auto 50px auto; /* 🔥 bajado más con margin-top 80px */
+  padding: 30px 25px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 255, 255, 0.05));
+  box-shadow: 0 8px 35px rgba(0,0,0,0.35), inset 0 0 12px rgba(255,255,255,0.08);
+  text-align: center;
+  backdrop-filter: blur(8px); /* efecto glass elegante */
+}
+
+.about h2 {
+  font-family: "Great Vibes", cursive;
+  font-size: 36px;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, var(--grad1), var(--grad2), var(--grad3));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.about p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #f3e6f7;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.credits {
+  position: fixed;
+  bottom: 20px; /* 🔥 lo subimos 10px más */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: #f3e6f7;
+  background: rgba(0,0,0,0.35);
+  padding: 6px 14px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+
+
+/* ==================*

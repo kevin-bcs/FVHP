@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Un corazón que late por ti, música y una explosión de 'Te quiero' en 100 idiomas. Hecho con amor para Frida." />
+  <meta name="author" content="Kevin" />
+
+  <title>Te quiero Frida 💖</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fuente romántica -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="corazon.png" type="image/png" />
+</head>
+<body>
+  <main class="stage">
+    <!-- Fondo -->
+    <div class="background"></div>
+    <div class="texture"></div>
+
+    <!-- Botón pequeño de música -->
+    <div class="music-control">
+      <button id="musicBtn" class="music-btn">🔊</button>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero">
+      <header class="header">
+        <h1 class="title">💖 Te quiero Frida 💖</h1>
+      </header>
+
+      <!-- Corazón -->
+      <button class="heart-button" id="heartButton" aria-label="Corazón">
+        <img id="heartImg" src="corazon.png" alt="Corazón realista" />
+      </button>
+    </section>
+
+    <!-- Lluvia romántica -->
+    <div id="rainLayer" class="rain-layer"></div>
+
+    <!-- Sobre esta página -->
+    <section class="about">
+      <h2>🌹 Para ti, la mejor Doctora</h2>
+      <p>
+        El universo guarda infinitas estrellas,
+        pero ninguna ilumina como tu sonrisa;
+        y en el reflejo de tus ojos tranquilos
+        encuentro la certeza de que incluso el silencio
+        puede convertirse en poesía.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Canción -->
+  <audio id="song" src="cancion.mp3" preload="auto" loop autoplay></audio>
+  <footer class="credits">
+      💝 Con cariño <strong>el Inge</strong>
+  </footer>
+  <!-- Footer -->
+  
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
